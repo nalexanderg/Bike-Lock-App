@@ -79,7 +79,7 @@ function initAutocomplete() {
 
     //Needs to be inside this function
     const markerSize = new google.maps.Size(50, 50);
-    const markerURL = 'src/Images/number_';
+    const markerURL = 'src/Images/number_1.png';
     var icons = {
         user: {
             url: 'src/Images/cycling.png',
@@ -134,7 +134,7 @@ function initAutocomplete() {
 
     //Puts user marker on map
     currentLocation.addListener('click', () => {
-        banner([currentLocation.title, null]);
+        // banner([currentLocation.title, null]);
         map.panTo(currentLocation.position);
         setTimeout(toggleBounce, 500, prevMarker, currentLocation);
         prevMarker = currentLocation;
@@ -144,7 +144,7 @@ function initAutocomplete() {
     rackLocation.forEach(rack => {
         let lockCode = rack[3]-1;
 
-        icons.numbers.url += availableLocks[lockCode][0][6] + '.png';
+        // icons.numbers.url += availableLocks[lockCode][0][6] + '.png';
         let marker = new google.maps.Marker({
             position: {lat: parseFloat(rack[1]), lng: parseFloat(rack[2])},
             map: map,
@@ -154,12 +154,12 @@ function initAutocomplete() {
 
         //Passes the specific rack to display necessary data, location, num locks
         marker.addListener('click', () => {
-            banner(rack);
+            // banner(rack);
             map.panTo(marker.position);
             setTimeout(toggleBounce, 500, prevMarker, marker);
             prevMarker = marker;
         });
-        icons.numbers.url = markerURL;
+        // icons.numbers.url = markerURL;
     });
 
     // Create the search box and link it to the UI element.
@@ -208,7 +208,7 @@ function getRacks() {
         }
     };
 
-    xmlhttpGET.open("GET", "src/PHP/racks.php?", true);
+    xmlhttpGET.open("GET", "src/PHP/CLERacks.php?", true);
     xmlhttpGET.send();
 
 }
